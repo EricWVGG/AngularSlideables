@@ -3,7 +3,7 @@ AngularSlideables
 
 A “pure” Angular implementation of jQuery-style toggleSlide().
 
-See http://jsfiddle.net/3sVz8/5/ for an example.
+See http://jsfiddle.net/3sVz8/6/ for an example.
 
 USAGE:
 
