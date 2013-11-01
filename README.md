@@ -1,11 +1,17 @@
 AngularSlideables
 =================
 
-A "pure" Angular implementation of jQuery-style toggleSlide().
+A “pure” Angular implementation of jQuery-style toggleSlide().
 
-see http://jsfiddle.net/3sVz8/5/ for an example
+See http://jsfiddle.net/3sVz8/5/ for an example.
 
 USAGE:
+
+Link to the library in your index (or require.js), and add 'angularSlideables' to your app modules.
+
+No CSS is necessary. Add the “slideable” class to any hidden, slideable content. Add a slide-toggle attribute to any trigger.
+
+This directive currently only works on single targetted IDs. I’ll expand it to cover classes if there’s demand.
 
 <pre><code>    &lt;article&gt;
         &lt;h1 slide-toggle="#derp" &gt;Click here for Hipster Ipsum.&lt;/h1&gt;
