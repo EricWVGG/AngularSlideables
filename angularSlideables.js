@@ -15,7 +15,10 @@ angular.module('angularSlideables', [])
                 'height' : '0px',
                 'transitionProperty' : 'height',
                 'transitionDuration' : attrs.duration,
-                'transitionTimingFunction' : attrs.easing
+                'transitionTimingFunction' : attrs.easing,
+                'webkitTransitionProperty' : 'height',
+                'webkitTransitionDuration' : attrs.duration,
+                'webkitTransitionTimingFunction' : attrs.easing,
             }).addClass('contracted');
             
             var expanded = false;
