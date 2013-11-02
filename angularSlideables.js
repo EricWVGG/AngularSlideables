@@ -1,11 +1,12 @@
 angular.module('angularSlideables', [])
+
 .directive('slideable', function () {
     return {
         restrict:'C',
+        transclude: true,
+        scope: false,
+        template: '<div class="slideable_content" style="margin:0 !important; padding:0 !important" ng-transclude ></div>',
         link:function (scope, element, attrs) {
-            // wrap tag
-                var contents = element.html();
-            element.html('<div class="slideable_content" style="margin:0 !important; padding:0 !important" >' + contents + '</div>');
             // default properties
                 attrs.duration = (!attrs.duration) ? '1s' : attrs.duration;
                 attrs.easing = (!attrs.easing) ? 'ease-in-out' : attrs.easing;
@@ -15,30 +16,37 @@ angular.module('angularSlideables', [])
                 'transitionProperty' : 'height',
                 'transitionDuration' : attrs.duration,
                 'transitionTimingFunction' : attrs.easing
-            });
+            }).addClass('contracted');
             
+            var expanded = false;
+            scope.$on('slideToggle', function(e, data) {
+                if(data.id == attrs.id) {
+                    if(!expanded) {
+                        var content = element.find('div')[0];
+                        content.style.border = '1px solid rgba(0,0,0,0)';
+                        var y = content.clientHeight;
+                        content.style.border = '0px';
+                        element.css('height', y + 'px').addClass('expanded').removeClass('contracted');
+                    } else {
+                        element.css('height', '0px').removeClass('expanded').addClass('contracted');
+                    }
+                    expanded = !expanded;
+                }
+            });
         }
     };
 })
-.directive('slideToggle', function() {
+
+.directive('slideToggle', ['$rootScope', function($rootScope) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            var target = document.querySelector(attrs.slideToggle);
             attrs.expanded = false;
             element.bind('click', function() {
-                var content = target.querySelector('.slideable_content');
-                if(!attrs.expanded) {
-                    content.style.border = '1px solid rgba(0,0,0,0)';
-                    var y = content.clientHeight;
-                    content.style.border = 0;
-                    target.style.height = y + 'px';
-                } else {
-                    target.style.height = '0px';
-                }
-                attrs.expanded = !attrs.expanded;
+                $rootScope.$broadcast( 'slideToggle', {id: attrs.slideToggle} );
             });
         }
     }
-});
+}]);
+
 
