@@ -28,16 +28,14 @@ EXAMPLES:
 
 The ID can be dynamically generated…
 
-<pre><code>&lt;article ng-app="angularSlideables"&gt;
-    &lt;ul&gt;
-        &lt;li ng-repeat="row in data"&gt;
-            &lt;span slide-toggle="#row_{{$index}}" &gt;expand row #{{$index}}.&lt;/span&gt;
-            &lt;div id="row_{{$index}}" class="slideable"&gt;
-                &lt;p&gt;How are YOU doing?&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/article&gt;
+<pre><code>&lt;ul&gt;
+    &lt;li ng-repeat="row in data"&gt;
+        &lt;span slide-toggle="#row_{{$index}}" &gt;expand row #{{$index}}.&lt;/span&gt;
+        &lt;div id="row_{{$index}}" class="slideable"&gt;
+            &lt;p&gt;How are YOU doing?&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
 </code></pre>
 
 OPTIONAL ATTRIBUTES:
