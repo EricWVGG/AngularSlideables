@@ -23,7 +23,7 @@ angular.module('angularSlideables', [])
             
             var expanded = false;
             scope.$on('slideToggle', function(e, data) {
-                if(data.id == attrs.id) {
+                if(data.id == '#'+attrs.id) {
                     if(!expanded) {
                         var content = element.find('div')[0];
                         content.style.border = '1px solid rgba(0,0,0,0)';
