@@ -4,7 +4,6 @@ angular.module('angularSlideables', [])
     return {
         restrict:'C',
         transclude: true,
-        scope: false,
         template: '<div class="slideable_content" style="margin:0 !important; padding:0 !important" ng-transclude ></div>',
         link:function (scope, element, attrs) {
             // default properties
@@ -25,13 +24,18 @@ angular.module('angularSlideables', [])
             scope.$on('slideToggle', function(e, data) {
                 if(data.id == '#'+attrs.id) {
                     if(!expanded) {
-                        var content = element.find('div')[0];
-                        content.style.border = '1px solid rgba(0,0,0,0)';
-                        var y = content.clientHeight;
-                        content.style.border = '0px';
-                        element.css('height', y + 'px').addClass('expanded').removeClass('contracted');
+                        // find hidden node
+                            var content = element.find('div')[0];
+                        // make a border so we can correctly measure margins
+                            content.style.border = '1px solid rgba(0,0,0,0)';
+                        // measure node height and remove border
+                            var y = content.clientHeight;
+                            content.style.border = '0px';
+                        // expand hidden node
+                            element.css('height', y + 'px').addClass('expanded').removeClass('contracted');
                     } else {
-                        element.css('height', '0px').removeClass('expanded').addClass('contracted');
+                        // contract node
+                            element.css('height', '0px').removeClass('expanded').addClass('contracted');
                     }
                     expanded = !expanded;
                 }
