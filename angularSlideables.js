@@ -34,6 +34,9 @@ angular.module('angularSlideables', [])
                         element.css('height', '0px').removeClass('expanded').addClass('contracted');
                     }
                     expanded = !expanded;
+                    scope.$apply(function(){
+                        scope[attrs.id] = expanded;    
+                    });
                 }
             });
         }
