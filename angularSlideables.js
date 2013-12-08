@@ -26,10 +26,10 @@ angular.module('angularSlideables', [])
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            var target = document.querySelector(attrs.slideToggle);
+            var target = document.querySelector(attrs.slideToggle),
+                content = target.querySelector('.slideable_content');
             attrs.expanded = false;
             element.bind('click', function() {
-                var content = target.querySelector('.slideable_content');
                 if(!attrs.expanded) {
                     content.style.border = '1px solid rgba(0,0,0,0)';
                     var y = content.clientHeight;
