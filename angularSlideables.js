@@ -1,7 +1,7 @@
 angular.module('angularSlideables', [])
 .directive('slideable', function () {
     return {
-        restrict:'C',
+        restrict:'CA',
         compile: function (element, attr) {
             // wrap tag
             var contents = element.html();
