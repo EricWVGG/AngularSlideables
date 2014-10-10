@@ -9,7 +9,7 @@ USAGE:
 
 Link to the library in your index (or require.js), and add 'angularSlideables' to your app modules.
 
-No CSS is necessary. Add the “slideable” class to any hidden, slideable content. Add a slide-toggle attribute to any trigger.
+No CSS is necessary. Add the “slideable” class or attribute to any hidden, slideable content. Add a slide-toggle attribute to any trigger.
 
 This directive currently only works on single targetted IDs. I’ll expand it to cover classes if there’s demand.
 
