@@ -34,6 +34,14 @@ angular.module('angularSlideables', [])
                 if (!target) target = document.querySelector(attrs.slideToggle);
                 if (!content) content = target.querySelector('.slideable_content');
                 
+                target.addEventListener('transitionend',function() {
+                	if (attrs.expanded) {
+                		element.addClass("expanded");
+                	} else {
+                		element.removeClass("expanded");
+                	}
+                });
+				
                 if(!attrs.expanded) {
                     content.style.border = '1px solid rgba(0,0,0,0)';
                     var y = content.clientHeight;
@@ -45,5 +53,5 @@ angular.module('angularSlideables', [])
                 attrs.expanded = !attrs.expanded;
             });
         }
-    }
+    };
 });
