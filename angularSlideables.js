@@ -30,7 +30,7 @@ angular.module('angularSlideables', [])
             
             attrs.expanded = false;
             
-            element.bind('click', function() {
+            element.bind('click keypress', function() {
                 if (!target) target = document.querySelector(attrs.slideToggle);
                 if (!content) content = target.querySelector('.slideable_content');
                 
