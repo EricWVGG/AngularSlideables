@@ -1,25 +1,20 @@
 angular.module('angularSlideables', [])
 .directive('slideable', function () {
     return {
-        restrict:'CA',
-        compile: function (element, attr) {
-            // wrap tag
-            var contents = element.html();
-            element.html('<div class="slideable_content" style="margin:0 !important; padding:0 !important" >' + contents + '</div>');
-
-            return function postLink(scope, element, attrs) {
-                // default properties
-                attrs.duration = (!attrs.duration) ? '1s' : attrs.duration;
-                attrs.easing = (!attrs.easing) ? 'ease-in-out' : attrs.easing;
-                var height = (attrs.expanded === 'true') ? '' : '0';
-                element.css({
-                    'overflow': 'hidden',
-                    'height': height,
-                    'transitionProperty': 'height',
-                    'transitionDuration': attrs.duration,
-                    'transitionTimingFunction': attrs.easing
-                });
-            };
+        restrict: 'CA',
+        transclude: true,
+        template: '<div class="slideable_content" style="margin:0 !important; padding:0 !important" ng-transclude></div>',
+        link: function(scope, element, attrs) {
+            attrs.duration = (!attrs.duration) ? '100ms' : attrs.duration;
+            attrs.easing = (!attrs.easing) ? 'ease-in-out' : attrs.easing;
+            var height = (attrs.expanded === 'true') ? '' : '0';
+            element.css({
+                'overflow': 'hidden',
+                'height': height,
+                'transitionProperty': 'height',
+                'transitionDuration': attrs.duration,
+                'transitionTimingFunction': attrs.easing
+            });
         }
     };
 })
