@@ -1,7 +1,7 @@
 angular.module('angularSlideables', [])
 .directive('slideable', function () {
     return {
-        restrict:'C',
+        restrict:'CA',
         compile: function (element, attr) {
             // wrap tag
             var contents = element.html();
@@ -11,9 +11,10 @@ angular.module('angularSlideables', [])
                 // default properties
                 attrs.duration = (!attrs.duration) ? '1s' : attrs.duration;
                 attrs.easing = (!attrs.easing) ? 'ease-in-out' : attrs.easing;
+                var height = (attrs.expanded === 'true') ? '' : '0';
                 element.css({
                     'overflow': 'hidden',
-                    'height': '0px',
+                    'height': height,
                     'transitionProperty': 'height',
                     'transitionDuration': attrs.duration,
                     'transitionTimingFunction': attrs.easing
@@ -27,12 +28,14 @@ angular.module('angularSlideables', [])
         restrict: 'A',
         link: function(scope, element, attrs) {
             var target, content;
-            
-            attrs.expanded = false;
-            
+                        
             element.bind('click', function() {
                 if (!target) target = document.querySelector(attrs.slideToggle);
                 if (!content) content = target.querySelector('.slideable_content');
+                
+                if(attrs.expanded === undefined) {
+                    attrs.expanded = (target.getAttribute('expanded') == 'true') ? true : false;
+                }
                 
                 if(!attrs.expanded) {
                     content.style.border = '1px solid rgba(0,0,0,0)';
