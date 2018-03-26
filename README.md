@@ -40,4 +40,4 @@ The ID can be dynamically generated…
 
 OPTIONAL ATTRIBUTES:
 
-<pre><code>&lt;div id="derp" class="slideable" easing="linear" duration="5s"&gt;…&lt;/div&gt;</code></pre>
+<pre><code>&lt;div id="derp" class="slideable" expanded="true" easing="linear" duration="5s"&gt;…&lt;/div&gt;</code></pre>
